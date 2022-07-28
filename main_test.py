@@ -1,8 +1,9 @@
-import main;
+from main import main
+import io
 
-def test_hello():
-    monkeypatch.setattr('sys.stdin', io.StringIO('2wf rwf e3rtg3 f 53tt3 er y'))
-    main()
+
+def test_myoutput(monkeypatch,capsys):  # or use "capfd" for fd-level
+    monkeypatch.setattr('sys.stdin', io.StringIO('3 2 1 nn bb aa'))
+    main() 
     captured = capsys.readouterr()
-    output = captured.out
-    assert output == "2wf 53tt3 e3rtg3 er f rwf y"
+    assert captured.out == "1 2 3 aa bb nn\n"
